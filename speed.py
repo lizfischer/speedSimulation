@@ -12,7 +12,7 @@ for g in range(1):
     game = Game()
     player1 = Player(round_strategy=Round.prioritize_next_move, game_strategy=Game.winner_takes_smallest)
     player2 = Player(round_strategy=Round.prioritize_next_move, game_strategy=Game.winner_takes_balanced)
-    game_results = game.play(player1, player2, verbose=False, interactive=False)
+    game_results = game.play(player1, player2, verbose=True, interactive=True)
     winners.append(game_results["winner"])
 
 print(f"MATCH RESULTS\n"

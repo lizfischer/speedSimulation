@@ -17,7 +17,7 @@ Utility Functions
 
 
 def create_deck():
-    deck = [0, 0]
+    deck = [100, 100]
     for value in range(1, 14):
         for _ in ['diamonds', 'clubs', 'spades', 'hearts']:
             deck.append(value)
@@ -71,25 +71,33 @@ def counts_face_down(piles):
 
 
 def are_neighbors(a, b):
-    # jokers
-    if a == 0 or b == 0:
+    # plain jokers
+    if a == 100 or b == 100:
         return True
+
+    # specialized jokers, unmask what they're acting as
+    if a > 100:
+        a = a-100
+    if b > 100:
+        b = b-100
 
     # king-ace wraparound
     if (a == 13 and b == 1) or (b == 13 and a == 1):
         return True
-
     # regular values
-    if abs(a-b) == 1:
+    if abs(a - b) == 1:
         return True
-
     return False
 
 
 def get_neighbors(card):
-    # jokers
-    if card == 0:
+    # plain jokers
+    if card == 100:
         return [x for x in range(0, 14)]
+
+    # specialized jokers, unmask what they're acting as
+    if card > 100:
+        card = card-100
 
     # king-ace wraparound
     if card == 13:

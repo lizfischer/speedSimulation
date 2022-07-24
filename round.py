@@ -115,7 +115,7 @@ class Round:
 
         # If it's a joker, declare it to be one of the neighboring cards, whichever would allow you to play again
         # FIXME: This differs from the IRL rules
-        if card_to_play == 0:
+        if card_to_play >= 100:
             card_to_play = Round.choose_joker_value(player.piles, discard_piles)
 
         # Play the card
@@ -183,7 +183,6 @@ class Round:
         order.insert(len(priority_piles), 0)
         return order
 
-
     @staticmethod
     def prioritize_revealing_cards(piles):
         # Put piles in order of most unturned cards
@@ -193,7 +192,6 @@ class Round:
         order.remove(0)
         order.append(0)
         return order
-
 
     @staticmethod
     def choose_joker_value(piles, discard_piles):
@@ -208,8 +206,7 @@ class Round:
                         if m in tops:
                             return n
 
-        return random.choice(get_neighbors(random.choice(discards)))
-
+        return 100 + random.choice(get_neighbors(random.choice(discards)))
 
     @staticmethod
     def find_winner(players):

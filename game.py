@@ -72,6 +72,11 @@ class Game:
                 if verbose:
                     print(f"\nSUDDEN DEATH: Last winner was Player {last_winner}")
 
+            # Reset the Jokers # TODO: FINISH FIXING THIS SHIT
+            p1_half = [x if x < 100 else 100 for x in p1_half]
+            p2_half = [x if x < 100 else 100 for x in p2_half]
+
+            # Initiate new round
             r = Round(player1, player2, [p1_half, p2_half], interactive=interactive)
             results = r.play(player1, player2, verbose=verbose, interactive=interactive)
 
