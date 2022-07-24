@@ -32,7 +32,6 @@ class Round:
         if interactive:
             input()
 
-
     def play_hand(self, player1, player2, interactive=False):
         p1_piles = player1.piles
         p2_piles = player2.piles
@@ -216,4 +215,5 @@ class Round:
             if piles.count([]) == len(piles):
                 return i + 1
         return None  # if both have cards, return None
+
 

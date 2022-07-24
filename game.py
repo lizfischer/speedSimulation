@@ -4,7 +4,7 @@ from round import Round
 
 # A set of rounds played with a single shuffle
 class Game:
-    BALANCED_STRATEGY_THRESHOLD = 5  # TODO EXPERIMENT WITH THIS
+    BALANCED_STRATEGY_THRESHOLD = 5
 
     def __init__(self, deck=None):
         self.deck = deck
@@ -51,9 +51,14 @@ class Game:
     def winner_takes_balanced(results):
         pile_size_diff = abs(len(results["left_discard"]) - len(results["right_discard"]))
 
-        if pile_size_diff < Game.BALANCED_STRATEGY_THRESHOLD:
+        if pile_size_diff <= Game.BALANCED_STRATEGY_THRESHOLD:
             return Game.winner_takes_own(results)
         return Game.winner_takes_smallest(results)
+
+# Game.winner_takes_smallest
+# Game.winner_takes_own
+# Game.winner_takes_balanced
+# Game.BALANCED_STRATEGY_THRESHOLD
 
     def play(self, player1, player2, verbose=False, interactive=False):
         sudden_death = False

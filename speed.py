@@ -5,15 +5,55 @@ from player import Player
 
 
 """
-Play a bunch of matches
+MATCH SETTINGS
+"""
+
+NUMBER_OF_GAMES = 200  # How many games to play in a row
+INTERACTIVE = False  # set to True if you want to step through the game play-by-play (hit space to advance)
+VERBOSE = False  # set to True if you want the steps of the game printed out while it runs, but not wait for you
+
+""" Round strategies 
+How players decide which cards to play during a round of gameplay. The options are:
+    Round.prioritize_next_move 
+    Round.prioritize_revealing_cards
+Prioritizing next move means the player prefers to play cards which will allow them to play another card after.
+Prioritizing revealing cards means the player prefers to play card from whichever pile has the most face-down cards.   
+ """
+p1_round_strategy = Round.prioritize_next_move
+p2_round_strategy = Round.prioritize_next_move
+
+""" Game strategies
+How players decide which stack of cards to take at the end of a game, if they won. The options are:
+    Game.winner_takes_smallest
+    Game.winner_takes_own
+    Game.winner_takes_balanced
+Winner takes smallest means the winning player takes whichever stack of cards is smaller.
+Winner takes own means the winning player takes whichever stack of cards they've been flipping cards into.
+Winner takes balanced means the winning player will take their own pile when the difference in pile size is small. 
+
+You can set the threshold for the balanced strategy with Game.BALANCED_STRATEGY_THRESHOLD. This number determines the 
+largest difference in pile size players will tolerate before they stop taking their own pile. 
+E.g. P1's strategy is balanced and the threshold is set to 5, they will take their own pile
+as long as it is no more than 5 cards larger than P2's
+"""
+p1_game_strategy = Game.winner_takes_smallest
+p2_game_strategy = Game.winner_takes_balanced
+
+Game.BALANCED_STRATEGY_THRESHOLD = 2
+
+
+"""
+Match Loop
+(Play a bunch of games)
 """
 winners = []
-for g in range(1):
+for g in range(NUMBER_OF_GAMES):
     game = Game()
     player1 = Player(round_strategy=Round.prioritize_next_move, game_strategy=Game.winner_takes_smallest)
     player2 = Player(round_strategy=Round.prioritize_next_move, game_strategy=Game.winner_takes_balanced)
-    game_results = game.play(player1, player2, verbose=True, interactive=True)
+    game_results = game.play(player1, player2, verbose=VERBOSE, interactive=INTERACTIVE)
     winners.append(game_results["winner"])
+
 
 print(f"MATCH RESULTS\n"
       f"Player 1: {winners.count(1)} "
@@ -24,7 +64,7 @@ print(f"MATCH RESULTS\n"
 
 
 """
-Test
+Test starter decks
 """
 # test_pile = [2, 0, 2, 2, 2, 2, 13, 13, 2, 13, 0, 7, 2, 2, 2,  # pile adjustment edge cases
 test = [2, 0, 2, 7, 12, 8, 13, 13, 5, 11, 0, 7, 10, 1, 9,  # player 1 piles
