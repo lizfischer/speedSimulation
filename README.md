@@ -2,7 +2,13 @@
 
 This is a simulation of the card game Speed.
 
-Change settings in `speed.py`, then run `python speed.py`
+## Requirements
+Python 3.8
+
+## Running the code
+Clone or download this repository. 
+Change settings in `speed.py`, then from a terminal window run `python speed.py`
+See below (or comments in `speed.py` for and explanation of the settings)
 
 ## Terminology
 Some lingo that'll make reading the code easier
