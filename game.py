@@ -66,7 +66,7 @@ class Game:
         results, last_winner = None, None
         while True:
             if verbose:
-                print(f"Player 1 starring with {len(p1_half)} cards")
+                print(f"Player 1 starting with {len(p1_half)} cards")
                 print(f"Player 2 starting with {len(p2_half)} cards")
                 if interactive:
                     input()

@@ -8,9 +8,9 @@ from player import Player
 MATCH SETTINGS
 """
 
-NUMBER_OF_GAMES = 200  # How many games to play in a row
+NUMBER_OF_GAMES = 1  # How many games to play in a row
 INTERACTIVE = False  # set to True if you want to step through the game play-by-play (hit space to advance)
-VERBOSE = False  # set to True if you want the steps of the game printed out while it runs, but not wait for you
+VERBOSE = True  # set to True if you want the steps of the game printed out while it runs, but not wait for you
 
 """ Round strategies 
 How players decide which cards to play during a round of gameplay. The options are:
@@ -37,7 +37,7 @@ E.g. P1's strategy is balanced and the threshold is set to 5, they will take the
 as long as it is no more than 5 cards larger than P2's
 """
 p1_game_strategy = Game.winner_takes_smallest
-p2_game_strategy = Game.winner_takes_balanced
+p2_game_strategy = Game.winner_takes_smallest
 
 Game.BALANCED_STRATEGY_THRESHOLD = 2
 
